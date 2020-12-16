@@ -6,7 +6,7 @@
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-code"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">WPU Admin</div>
+                <div class="sidebar-brand-text mx-3">CUTI</div>
             </a>
 
             <!-- Divider -->

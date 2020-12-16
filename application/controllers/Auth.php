@@ -12,7 +12,7 @@ class Auth extends CI_Controller
     public function index()
     {
         if ($this->session->userdata('email')) {
-            redirect('user');
+            redirect('Cuti');
         }
 
         $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
@@ -50,7 +50,7 @@ class Auth extends CI_Controller
                     if ($user['role_id'] == 1) {
                         redirect('admin');
                     } else {
-                        redirect('user');
+                        redirect('Cuti');
                     }
                 } else {
                     $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Wrong password!</div>');
@@ -102,7 +102,7 @@ class Auth extends CI_Controller
                 'TGL_Diterima'=>'0000-00-00',
                 'password' => password_hash($this->input->post('password1'), PASSWORD_DEFAULT),
                 'role_id' => 2,
-                'is_active' => 0,
+                'is_active' => 1,
                 'date_created' => time()
             ];
 

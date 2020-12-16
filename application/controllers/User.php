@@ -8,7 +8,7 @@ class User extends CI_Controller
         parent::__construct();
         is_logged_in();
     }
-    
+
     public function index()
     {
         $data['title'] = 'My Profile';
@@ -16,11 +16,26 @@ class User extends CI_Controller
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
-        $this->load->view('user/index', $data);
-        $this->load->view('templates/footer');
+        $this->get_page();
     }
 
+    private function get_page()
+    {
+        $ping = array('email' => $_SESSION['email']);
+        $query = $this->db->get_where('user', $ping)->result();
+        $query = $query[0];
+        $data['user'] = $query;
+        if ($query->Jenis_Pekerjaan == 'default' || $query->Alamat == 'default' || $query->Jabatan == 'default' || $query->id_Pekerja == 0) {
+            $data['title'] = 'My Profile';
+            $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+            $this->load->view('Cuti/lengkapi_data', $data);
+        } else {
 
+            $this->load->view('user/index', $data);
+        }
+
+        $this->load->view('templates/footer');
+    }
     public function edit()
     {
         $data['title'] = 'Edit Profile';

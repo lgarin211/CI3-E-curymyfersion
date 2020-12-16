@@ -13,7 +13,10 @@ class Cuti extends CI_Controller
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
     }
-
+    public function index()
+    {
+        redirect('Cuti/libur');
+    }
     public function get_selisih()
     {
         $list = $this->db->get('user')->result();
@@ -31,7 +34,7 @@ class Cuti extends CI_Controller
                 $this->db->set('Pensiun', 1);
                 $this->db->where('id', $value->id);
                 $this->db->update('user');
-            } elseif ($years < 50){
+            } elseif ($years < 50) {
                 $this->db->set('Pensiun', 0);
                 $this->db->where('id', $value->id);
                 $this->db->update('user');
